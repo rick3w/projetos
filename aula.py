@@ -24,4 +24,5 @@ for d in novo_cpf:
 digito_11 = total_2 * 10 % 11
 novo_cpf += str(digito_11)
 
-print(novo_cpf)
+print(f'\n{novo_cpf}')
+print('\nFIM DO PROGRAMA!')
