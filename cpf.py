@@ -24,5 +24,7 @@ for d in novo_cpf:
 digito_11 = total_2 * 10 % 11
 novo_cpf += str(digito_11)
 
-print(f'\n{novo_cpf}')
-print('\nFIM DO PROGRAMA!')
+if cpf == novo_cpf:
+    print('O cpf é VÁLIDO!')
+else:
+    print('O cpf é INVÁLIDO!')
