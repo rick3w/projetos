@@ -1,8 +1,8 @@
 cpf = input('Digite o cpf: ')
 novo_cpf = ''
 
-for d in cpf:
-    if d.isdigit() and len(novo_cpf) < 9:
+for d in cpf[:-2]:
+    if d.isdigit():
         novo_cpf += d
 
 cont_1 = 10
