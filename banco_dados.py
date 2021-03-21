@@ -2,9 +2,9 @@ class Cadastro:
     def __init__(self):
         while True:
             self.nome = input('\nNome: ').title().strip()
-            if self.nome_valido():
+            if self.validar_nome():
                 self.idade = input('Idade: ')
-                if self.idade_valida():
+                if self.validar_idade():
                     print('\nCADASTRO EFETUADO COM SUCESSO!')
                     print(f'Você se chama {self.nome} e tem {self.idade} anos.')
                     print('\nFIM DO PROGRAMA.\n')
@@ -14,14 +14,14 @@ class Cadastro:
             else:
                 print('ERRO! Nome inválido.')
         
-    def nome_valido(self):
+    def validar_nome(self):
         nome = self.nome.replace(' ', '')
         if nome.isalpha():
             return True
         else:
             return False
 
-    def idade_valida(self):
+    def validar_idade(self):
         try:
             idade = int(self.idade)
             return True
