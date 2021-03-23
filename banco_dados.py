@@ -6,32 +6,53 @@ class BancoDados:
         self.titulo('TECH N GAMES', 50)
         while True:
             print('\nEscolha uma das opções a seguir:')
-            print('[A] Cadastrar pessoa\n[B] Listar pessoas cadastradas\n[C] Sair')
+            print('[A] Cadastrar cliente\n[B] Apagar cliente\n[C] Listar clientes cadastrados\n[D] Sair')
             opc = input('> ').upper().strip()
-            if self.validar_string(opc) and opc in 'ABC':
+            if self.validar_string(opc) and opc in 'ABCD':
                 if opc == 'A':
-                    self.cadastrar_pessoa()
+                    self.cadastrar_cliente()
                 elif opc == 'B':
-                    self.listar_cadastros()
+                    self.apagar_cliente()
+                elif opc == 'C':
+                    self.listar_clientes()
                 else:
                     print('\nFIM DO PROGRAMA\n')
                     break
             else:
                 print('ERRO! Opção inválida.')
     
-    def cadastrar_pessoa(self):
-        while True:
-            nome = input('\nDigite o nome: ').title().strip()
-            if self.validar_string(nome):
-                idade = input('Digite a idade: ')
-                if self.validar_numero(idade):
-                    self.cadastros.append({'nome': nome, 'idade': idade})
-                    print('CADASTRO EFETUADO!')
-                    break
-                else:
-                    print('ERRO! Idade inválida.')
+    def cadastrar_cliente(self):
+        nome = input('\nDigite o nome: ').title().strip()
+        if self.validar_string(nome):
+            idade = input('Digite a idade: ')
+            if self.validar_numero(idade):
+                self.cadastros.append({'nome': nome, 'idade': idade})
+                print('CADASTRO EFETUADO!')
             else:
-                print('ERRO! Nome inválido.')
+                print('ERRO! Idade inválida.')
+        else:
+            print('ERRO! Nome inválido.')
+
+    def apagar_cliente(self):
+        if len(self.cadastros) == 0:
+            print('Não há nenhum cliente!')
+        else:
+            opc = input('\nQual cliente deseja apagar?\n> ')
+            if self.validar_numero(opc) and int(opc) in range(len(self.cadastros) + 1):
+                self.cadastros.pop(int(opc) - 1)
+                print('Cliente apagado com sucesso!')
+            else:
+                print('ERRO! Cliente não existente.')
+
+    def listar_clientes(self):
+        if len(self.cadastros) == 0:
+            print('Não há nenhum cliente!')
+        else:
+            for cliente, dados in enumerate(self.cadastros):
+                print('-' * 50)
+                print(f'Cliente {cliente + 1}')
+                print(f'Nome: {dados["nome"]}\nIdade: {dados["idade"]} anos')
+            print('-' * 50)
 
     def validar_string(self, string):
         string = string.replace(' ', '')
@@ -46,14 +67,6 @@ class BancoDados:
             return True
         except:
             return False
-
-    def listar_cadastros(self):
-        if len(self.cadastros) == 0:
-            print('Não há nenhum cadastro!')
-        else:
-            for cliente, dados in enumerate(self.cadastros):
-                print(f'\nCliente {cliente + 1}:')
-                print(f'Nome: {dados["nome"]}\nIdade: {dados["idade"]}')
 
     def titulo(self, titulo, tamanho):
         print()
