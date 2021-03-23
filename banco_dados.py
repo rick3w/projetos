@@ -1,32 +1,15 @@
-class Cadastro:
+class CarrinhoCompras:
     def __init__(self):
-        while True:
-            self.nome = input('\nNome: ').title().strip()
-            if self.validar_nome():
-                self.idade = input('Idade: ')
-                if self.validar_idade():
-                    print('\nCADASTRO EFETUADO COM SUCESSO!')
-                    print(f'Você se chama {self.nome} e tem {self.idade} anos.')
-                    print('\nFIM DO PROGRAMA.\n')
-                    break
-                else:
-                    print('ERRO! Idade inválida.')
-            else:
-                print('ERRO! Nome inválido.')
-        
-    def validar_nome(self):
-        nome = self.nome.replace(' ', '')
-        if nome.isalpha():
-            return True
-        else:
-            return False
+        self.produtos = []
 
-    def validar_idade(self):
-        try:
-            idade = int(self.idade)
-            return True
-        except:
-            return False
+    def inserir_produtos(self, produto):
+        self.produtos.append(produto)
 
-def titulo(titulo, tamanho):
-    return f'\n{"-" * tamanho}\n{titulo:^{tamanho}}\n{"-" * tamanho}'
+    def listar_produtos(self):
+        for produto in self.produtos:
+            print(produto.nome, produto.valor)
+
+class Produto:
+    def __init__(self):
+        self.nome = input('\nNome do produto: ')
+        self.valor = input('Valor do produto: ')

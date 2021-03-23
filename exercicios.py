@@ -1,5 +1,9 @@
 from banco_dados import *
 
-print(titulo('CADASTRO', 50))
+carrinho_cliente = CarrinhoCompras()
 
-pessoa_1 = Cadastro()
+p1 = Produto()
+
+carrinho_cliente.inserir_produtos(p1)
+
+carrinho_cliente.listar_produtos()
