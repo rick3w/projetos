@@ -47,22 +47,13 @@ class BancoDados:
         except:
             return False
 
-    def deseja_continuar(self):
-        while True:
-            resp = input('\nDeseja continuar? [S/N]: ').upper().strip()
-            if self.validar_string(resp) and resp in 'SN':
-                break
-            else:
-                print('ERRO! Resposta inválida')
-        if resp == 'S':
-            return True
-        else:
-            return False
-
     def listar_cadastros(self):
-        for cliente, dados in enumerate(self.cadastros):
-            print(f'\nCliente {cliente + 1}:')
-            print(f'Nome: {dados["nome"]}\nIdade: {dados["idade"]}')
+        if len(self.cadastros) == 0:
+            print('Não há nenhum cadastro!')
+        else:
+            for cliente, dados in enumerate(self.cadastros):
+                print(f'\nCliente {cliente + 1}:')
+                print(f'Nome: {dados["nome"]}\nIdade: {dados["idade"]}')
 
     def titulo(self, titulo, tamanho):
         print()
