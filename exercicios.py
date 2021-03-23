@@ -1,5 +1,5 @@
 from banco_dados import *
 
-pessoa_1 = BancoDados()
+tech_games = BancoDados()
 
-pessoa_1.menu()
+tech_games.menu()
