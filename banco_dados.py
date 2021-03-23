@@ -1,6 +1,23 @@
 class BancoDados:
     def __init__(self):
-        self.cadastros = {}
+        self.cadastros = []
+
+    def menu(self):
+        self.titulo('TECH N GAMES', 50)
+        while True:
+            print('\nEscolha uma das opções a seguir:')
+            print('[A] Cadastrar pessoa\n[B] Listar pessoas cadastradas\n[C] Sair')
+            opc = input('> ').upper().strip()
+            if self.validar_string(opc) and opc in 'ABC':
+                if opc == 'A':
+                    self.cadastrar_pessoa()
+                elif opc == 'B':
+                    self.listar_cadastros()
+                else:
+                    print('\nFIM DO PROGRAMA\n')
+                    break
+            else:
+                print('ERRO! Opção inválida.')
     
     def cadastrar_pessoa(self):
         while True:
@@ -8,22 +25,14 @@ class BancoDados:
             if self.validar_string(nome):
                 idade = input('Digite a idade: ')
                 if self.validar_numero(idade):
-                    self.cadastros = {nome, idade}
-                    print('\nCADASTRO EFETUADO!')
-                    while True:
-                        resp = input('\nDeseja cadastrar mais pessoas? [S/N]: ').upper().strip()
-                        if self.validar_string(resp) and resp in 'SN':
-                            break
-                        else:
-                            print('ERRO! Resposta inválida.')
-                    if resp == 'N':
-                        break
+                    self.cadastros.append({'nome': nome, 'idade': idade})
+                    print('CADASTRO EFETUADO!')
+                    break
                 else:
                     print('ERRO! Idade inválida.')
             else:
                 print('ERRO! Nome inválido.')
 
-    
     def validar_string(self, string):
         string = string.replace(' ', '')
         if string.isalpha():
@@ -37,3 +46,26 @@ class BancoDados:
             return True
         except:
             return False
+
+    def deseja_continuar(self):
+        while True:
+            resp = input('\nDeseja continuar? [S/N]: ').upper().strip()
+            if self.validar_string(resp) and resp in 'SN':
+                break
+            else:
+                print('ERRO! Resposta inválida')
+        if resp == 'S':
+            return True
+        else:
+            return False
+
+    def listar_cadastros(self):
+        for cliente, dados in enumerate(self.cadastros):
+            print(f'\nCliente {cliente + 1}:')
+            print(f'Nome: {dados["nome"]}\nIdade: {dados["idade"]}')
+
+    def titulo(self, titulo, tamanho):
+        print()
+        print(f'{"-" * tamanho}')
+        print(f'{titulo:^{tamanho}}')
+        print(f'{"-" * tamanho}')
