@@ -1,15 +1,39 @@
-class CarrinhoCompras:
+class BancoDados:
     def __init__(self):
-        self.produtos = []
+        self.cadastros = {}
+    
+    def cadastrar_pessoa(self):
+        while True:
+            nome = input('\nDigite o nome: ').title().strip()
+            if self.validar_string(nome):
+                idade = input('Digite a idade: ')
+                if self.validar_numero(idade):
+                    self.cadastros = {nome, idade}
+                    print('\nCADASTRO EFETUADO!')
+                    while True:
+                        resp = input('\nDeseja cadastrar mais pessoas? [S/N]: ').upper().strip()
+                        if self.validar_string(resp) and resp in 'SN':
+                            break
+                        else:
+                            print('ERRO! Resposta inválida.')
+                    if resp == 'N':
+                        break
+                else:
+                    print('ERRO! Idade inválida.')
+            else:
+                print('ERRO! Nome inválido.')
 
-    def inserir_produtos(self, produto):
-        self.produtos.append(produto)
+    
+    def validar_string(self, string):
+        string = string.replace(' ', '')
+        if string.isalpha():
+            return True
+        else:
+            return False
 
-    def listar_produtos(self):
-        for produto in self.produtos:
-            print(produto.nome, produto.valor)
-
-class Produto:
-    def __init__(self):
-        self.nome = input('\nNome do produto: ')
-        self.valor = input('Valor do produto: ')
+    def validar_numero(self, numero):
+        try:
+            numero = int(numero)
+            return True
+        except:
+            return False
