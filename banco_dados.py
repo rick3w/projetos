@@ -6,7 +6,8 @@ class BancoDados:
         self.titulo('TECH N GAMES', 50)
         while True:
             print('\nEscolha uma das opções a seguir:')
-            print('[A] Cadastrar cliente\n[B] Apagar cliente\n[C] Listar clientes cadastrados\n[D] Sair')
+            print('[A] Cadastrar cliente\n[B] Apagar cliente')
+            print('[C] Listar clientes cadastrados\n[D] Sair')
             opc = input('> ').upper().strip()
             if self.validar_string(opc) and opc in 'ABCD':
                 if opc == 'A':
@@ -27,7 +28,7 @@ class BancoDados:
             idade = input('Digite a idade: ')
             if self.validar_numero(idade):
                 self.cadastros.append({'nome': nome, 'idade': idade})
-                print('CADASTRO EFETUADO!')
+                print('CLIENTE CADASTRADO!')
             else:
                 print('ERRO! Idade inválida.')
         else:
@@ -40,9 +41,9 @@ class BancoDados:
             opc = input('\nQual cliente deseja apagar?\n> ')
             if self.validar_numero(opc) and int(opc) in range(len(self.cadastros) + 1):
                 self.cadastros.pop(int(opc) - 1)
-                print('Cliente apagado com sucesso!')
+                print('CLIENTE APAGADO!')
             else:
-                print('ERRO! Cliente não existente.')
+                print('ERRO! Cliente não existe.')
 
     def listar_clientes(self):
         if len(self.cadastros) == 0:
