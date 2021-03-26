@@ -1,3 +1,6 @@
-from Utilitários.formatação import *
+from PyQt5.QtWidgets import *
+import sys
 
-titulo('CURSO PYTHON', 40)
+class App(QMainWindow):
+    def __init__(self):
+        
